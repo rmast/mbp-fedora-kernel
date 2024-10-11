@@ -30,9 +30,33 @@ cd ${RPMBUILD_PATH}/SPECS
 dnf -y builddep kernel.spec
 
 echo >&2 "===]> Info: Applying kconfig changes... ";
-echo "CONFIG_APPLE_BCE=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
-echo "CONFIG_APPLE_IBRIDGE=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
-# echo "CONFIG_BT_HCIBCM4377=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_PMIC_OPREGION=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_BYTCRC_PMIC_OPREGION=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_I2C_DESIGNWARE_CORE=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_I2C_DESIGNWARE_PLATFORM=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_I2C_DESIGNWARE_BAYTRAIL=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_I2C_DESIGNWARE_PCI=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_GPIO_CRYSTAL_COVE=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_INTEL_SOC_PMIC=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_MEDIA_SUPPORT=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_MEDIA_SUPPORT_FILTER=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_VIDEO_ADV_DEBUG=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_STAGING=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_STAGING_MEDIA=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_INTEL_ATOMISP=y" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_VIDEO_ATOMISP=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_VIDEO_ATOMISP_ISP2401=n" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_VIDEO_ATOMISP_OV2722=n" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_VIDEO_ATOMISP_GC2235=n" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_VIDEO_ATOMISP_MSRLIST_HELPER=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_VIDEO_ATOMISP_MT9M114=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_INTEL_ATOMISP2_LED" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_V4L2_CCI" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_V4L2_CCI_I2C" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_INTEL_ATOMISP2_PDX86" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_PWM_LPSS_PCI" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_IPU_BRIDGE" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
+echo "CONFIG_INTEL_VSC" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
 
 ### Change buildid to mbp
 echo >&2 "===]> Info: Setting kernel name...";
