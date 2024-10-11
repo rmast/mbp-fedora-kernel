@@ -29,19 +29,6 @@ rpm -Uvh kernel-${FEDORA_KERNEL_VERSION}.src.rpm
 cd ${RPMBUILD_PATH}/SPECS
 dnf -y builddep kernel.spec
 
-### Create patch file with custom drivers
-echo >&2 "===]> Info: Creating patch file...";
-FEDORA_KERNEL_VERSION=${FEDORA_KERNEL_VERSION} "${REPO_PWD}"/patch_driver.sh
-
-### Apply patches
-echo >&2 "===]> Info: Applying patches...";
-mkdir -p "${REPO_PWD}"/patches
-while IFS= read -r file
-do
-  echo >&2 "===]> Info: Applying patch: $file"
-  "${REPO_PWD}"/patch_kernel.sh "$file"
-done < <(find "${REPO_PWD}"/patches -type f -name "*.patch" | sort)
-
 echo >&2 "===]> Info: Applying kconfig changes... ";
 echo "CONFIG_APPLE_BCE=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
 echo "CONFIG_APPLE_IBRIDGE=m" >> "${RPMBUILD_PATH}/SOURCES/kernel-local"
