@@ -51,21 +51,6 @@ find .
 pwd
 rpmbuild -bb --without debug --without debuginfo --target=x86_64 rpm.spec
 
-### Import rpm siging keys
-cat <<EOT >> ~/.rpmmacros
-%_signature gpg
-%_gpg_path /root/.gnupg
-%_gpg_name mbp-fedora
-%_gpgbin /usr/bin/gpg
-EOT
-
-echo "$RPM_SIGNING_KEY" | base64 -d > ./rpm_signing_key
-gpg --import ./rpm_signing_key
-rpm --import "${REPO_PWD}"/yum-repo/fedora-mbp.gpg
-rm -rfv ./rpm_signing_key
-
-rpm --addsign ${RPMBUILD_PATH}/RPMS/x86_64/*.rpm
-
 ### Copy artifacts to shared volume
 echo >&2 "===]> Info: Copying rpms and calculating SHA256 ...";
 cd "${REPO_PWD}"
