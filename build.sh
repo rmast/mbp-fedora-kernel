@@ -66,7 +66,7 @@ sed -i "s/# define buildid.*/%define buildid .${MBP_VERSION}/" "${RPMBUILD_PATH}
 ### Build non-debug kernel rpms
 echo >&2 "===]> Info: Bulding kernel ...";
 cd "${RPMBUILD_PATH}"/SPECS
-rpmbuild -bb --with baseonly --without debug --without debuginfo --target=x86_64 kernel.spec
+rpmbuild -bb --with baseonly --without debug --without debuginfo --without configcheck --target=x86_64 kernel.spec
 rpmbuild_exitcode=$?
 
 ### Build non-debug mbp-fedora-t2-config rpms
@@ -74,7 +74,7 @@ cp -rfv "${REPO_PWD}"/yum-repo/mbp-fedora-t2-config/rpm.spec ./
 cp -rfv "${REPO_PWD}"/yum-repo/mbp-fedora-t2-config/suspend/rmmod_tb.sh ${RPMBUILD_PATH}/SOURCES
 find .
 pwd
-rpmbuild -bb --without debug --without debuginfo --target=x86_64 rpm.spec
+rpmbuild -bb --without debug --without debuginfo --without configcheck --target=x86_64 rpm.spec
 
 ### Copy artifacts to shared volume
 echo >&2 "===]> Info: Copying rpms and calculating SHA256 ...";
